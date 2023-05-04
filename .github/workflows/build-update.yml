@@ -10,6 +10,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Deploy to GitHub Pages
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git remote set-url main https://${{ secrets.GH_PAGES_TOKEN }}@github.com/Dongyifengs/Warp-Export.git
+        git push --force main gh-pages
     - name: Checkout
       uses: actions/checkout@v2
     - name: Use Node.js
